@@ -49,7 +49,7 @@ const SingleProduct = ({
         <div className="d-flex gap-3 align-items-baseline mt-3 ">
           <label className="form-label ">Qty:</label>
           <select
-            class="form-select form-select-sm "
+            className="form-select form-select-sm "
             defaultValue="1"
             style={{ width: "70px" }}
             aria-label="Default select example"
