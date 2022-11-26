@@ -7,6 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     icon library - https://www.npmjs.com/package/material-icons
     icon name Search - https://fonts.google.com/icons?icon.query=heart
     bootstrap - https://getbootstrap.com/docs/5.2/layout/grid/
+    faker - https://fakerjs.dev/api/image.html#fashion
 
 In the project directory, you can run:
 

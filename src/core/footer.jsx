@@ -19,7 +19,9 @@ const RenderList = ({ title, list }) => {
     <div className="col-md-2 ">
       <h6 className="mb-3">{title}</h6>
       {LIST1.map((item) => (
-        <div className="fs-6 mb-1">{item}</div>
+        <div className="fs-6 mb-1" key={item}>
+          {item}
+        </div>
       ))}
     </div>
   );
