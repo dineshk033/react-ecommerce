@@ -9,7 +9,7 @@ const Header = () => {
         <div className="input-group">
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="search_productFilter"
             placeholder="search"
           />

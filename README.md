@@ -8,6 +8,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     icon name Search - https://fonts.google.com/icons?icon.query=heart
     bootstrap - https://getbootstrap.com/docs/5.2/layout/grid/
     faker - https://fakerjs.dev/api/image.html#fashion
+    Refer Mock API - https://dummyjson.com/docs/products
+    axios - https://www.npmjs.com/package/axios
 
 In the project directory, you can run:
 
