@@ -2,7 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Reference
+
+    icon library - https://www.npmjs.com/package/material-icons
+    icon name Search - https://fonts.google.com/icons?icon.query=heart
+    bootstrap - https://getbootstrap.com/docs/5.2/layout/grid/
 
 In the project directory, you can run:
 
