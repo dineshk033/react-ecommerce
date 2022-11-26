@@ -27,7 +27,7 @@ const CartPage = () => {
         </div>
         <div className="col-md-4">
           <div className="bg-info bg-opacity-10  shadow-sm p-3 ">
-            <div className="fs-5 fw-semibold">Order Summary</div>
+            <div className="fs-5 fw-semibold mb-3">Order Summary</div>
             <LabelPair label="Item(s) total" value="$400.92" />
             <LabelPair label="Shop discount" value="$54.22" />
             <hr />
@@ -35,7 +35,7 @@ const CartPage = () => {
             <LabelPair label="Shipping Fee" value="$24.00" />
             <hr />
             <LabelPair label="Total(2 items)" value="$470.22" bold />
-            <div class="d-grid gap-2 mb-2 mt-4">
+            <div className="d-grid gap-2 mb-2 mt-4">
               <button className="btn btn-warning">Proceed to checkout</button>
             </div>
           </div>

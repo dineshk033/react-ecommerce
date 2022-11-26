@@ -18,17 +18,19 @@ const CardTemplate3 = ({ thumbnail, title, brand }) => {
         <p>
           Color: <b>Gray & Yellow</b>
         </p>
-        <div className="row">
-          <select
-            className="col-3 form-select form-select-sm border-end"
-            defaultValue="1"
-            style={{ width: "70px" }}
-            aria-label="Default select example"
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
+        <div className="row align-items-baseline">
+          <div className="col-3">
+            <select
+              className="form-select form-select-sm border-end"
+              defaultValue="1"
+              style={{ width: "70px" }}
+              aria-label="Default select example"
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
           <div role="button" className="col-3 fs-6 border-end text-primary">
             Edit
           </div>
