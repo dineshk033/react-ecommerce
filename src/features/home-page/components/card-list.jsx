@@ -1,11 +1,21 @@
+import { useNavigate } from "react-router-dom";
 import CardTemplateOne from "../../../shared/components/card/card-template-one";
 
-const CardList = ({ title, image }) => {
+const CardList = ({ title, image, routerPath }) => {
+  console.log(routerPath);
+  const navigate = useNavigate();
   return (
-    <div className="row row-cols-10 mt-5 gx-3">
-      <div className="card col-md-2 d-flex align-items-center justify-content-center">
-        <div className="fs-5 mb-2 text-center">{title}</div>
-        <button className="btn btn-primary">view all</button>
+    <div className="row row-cols-10  gx-3 my-5">
+      <div className="card bg-warning bg-opacity-10 col-md-2 d-flex align-items-center justify-content-center">
+        <div className="fs-5 mb-2 text-center text-capitalize">{title}</div>
+        <button
+          className="btn btn-primary"
+          onClick={() => {
+            navigate(`search/${routerPath}`);
+          }}
+        >
+          view all
+        </button>
       </div>
       {Array(5)
         .fill(1)
@@ -23,4 +33,5 @@ const CardList = ({ title, image }) => {
 export default CardList;
 CardList.defaultProps = {
   title: "Show all Shoe's",
+  routerPath: "smartphones",
 };

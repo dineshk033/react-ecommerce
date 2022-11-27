@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Ratings from "../shared/components/ratings";
 
 const Price = ({ price, discountPercentage }) => {
@@ -25,6 +26,7 @@ const SingleProduct = ({
   discountPercentage,
   description,
 }) => {
+  const navigate = useNavigate();
   return (
     <div className="row mt-5" style={{ height: "60vh" }}>
       <div className="col-md-7">
@@ -64,7 +66,12 @@ const SingleProduct = ({
             <button className="btn btn-warning">Add to Cart</button>
           </div>
           <div className="d-grid gap-2 col-6 mx-auto">
-            <button className="btn btn-success">Buy Now</button>
+            <button
+              className="btn btn-success"
+              onClick={() => navigate("/cart")}
+            >
+              Buy Now
+            </button>
           </div>
         </div>
         <div className="fs-5 mt-5 text-decoration-underline pb-1">

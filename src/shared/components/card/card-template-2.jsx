@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Ratings from "../ratings";
 
 const Price = ({ price, discountPercentage }) => {
@@ -18,12 +19,20 @@ const CardTemplateTwo = ({
   stock,
   price,
   discountPercentage,
+  id,
 }) => {
+  const navigate = useNavigate();
   return (
     <div className="text-center">
       <img src={thumbnail} alt={title} width="100%" height="150" />
       <div className="fs-6 mb-2">{brand}</div>
-      <div className="fs-6 fw-semibold">{title}</div>
+      <div
+        role="button"
+        className="fs-6 fw-semibold"
+        onClick={() => navigate(`/product/${id}`)}
+      >
+        {title}
+      </div>
       <div className="d-flex align-items-center justify-content-center">
         <Ratings count={rating} />
         <span>({stock})</span>

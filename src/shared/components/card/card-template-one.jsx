@@ -5,7 +5,7 @@ const CardTemplateOne = ({ title, thumbnail, brand, catergories, offer }) => {
     <div className="text-center ">
       <img src={thumbnail} alt={title} width="100%" height="150" />
       <div className=" text-muted text-truncate mb-2">{brand}</div>
-      <div className="fs-4 fw-semibold">{catergories}</div>
+      <div className="fs-5 fw-semibold">{catergories}</div>
       <div className="fs-5 text-success fw-semibold">{offer}</div>
     </div>
   );
