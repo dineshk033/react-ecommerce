@@ -7,14 +7,14 @@ const HomePageCard = () => {
       <CardList
         title="Smartphones"
         image={faker.image.business}
-        routerPath="smartphones"
+        routerPath="phone"
       />
       <CardList
         title="Men's & Women's Dresses"
         image={faker.image.fashion}
-        routerPath="womens-dresses"
+        routerPath="dress"
       />
-      <CardList image={faker.image.sports} routerPath="mens-shoes" />
+      <CardList image={faker.image.sports} routerPath="shoes" />
     </>
   );
 };
