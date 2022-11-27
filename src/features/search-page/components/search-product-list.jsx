@@ -1,15 +1,13 @@
 import CardTemplateTwo from "../../../shared/components/card/card-template-2";
 
-const SearchProductList = () => {
+const SearchProductList = ({ data }) => {
   return (
     <div className="row gy-4 gx-3">
-      {Array(20)
-        .fill(1)
-        .map((_, el) => (
-          <div key={el.toString()} className="col-md-3">
-            <CardTemplateTwo />
-          </div>
-        ))}
+      {data.map((el) => (
+        <div key={el.id} className="col-md-3">
+          <CardTemplateTwo {...el} />
+        </div>
+      ))}
     </div>
   );
 };
