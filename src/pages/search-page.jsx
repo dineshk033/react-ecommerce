@@ -7,7 +7,7 @@ import SearchProductList from "../features/search-page/components/search-product
 const SearchPage = () => {
   const { query } = useParams();
   const [data, setData] = useState([]);
-  console.log();
+
   useEffect(() => {
     /**
      * baseurl alreadt add in common file, same instance here we are using
