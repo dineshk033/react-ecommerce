@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import AxiosInstance from "../axios";
 import Ratings from "../shared/components/ratings";
+import { addToCart } from "../redux/action/cart-actions";
 // DEFAULT ={
 //   id: 1,
 //   title: "iPhone 9",
@@ -39,7 +41,7 @@ const Price = ({ price, discountPercentage }) => {
 
 const SingleProduct = () => {
   const [state, setState] = useState(null);
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { productId } = useParams();
   useEffect(() => {
@@ -94,7 +96,14 @@ const SingleProduct = () => {
             </div>
             <div className="row mt-3 gx-2">
               <div className="d-grid gap-2 col-6 mx-auto">
-                <button className="btn btn-warning">Add to Cart</button>
+                <button
+                  className="btn btn-warning"
+                  onClick={() => {
+                    dispatch(addToCart(state));
+                  }}
+                >
+                  Add to Cart
+                </button>
               </div>
               <div className="d-grid gap-2 col-6 mx-auto">
                 <button
