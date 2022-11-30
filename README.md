@@ -10,6 +10,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     faker - https://fakerjs.dev/api/image.html#fashion
     Refer Mock API - https://dummyjson.com/docs/products
     axios - https://www.npmjs.com/package/axios
+    react redux basic - https://react-redux.js.org/tutorials/connect
 
 In the project directory, you can run:
 
