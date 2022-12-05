@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import AxiosInstance from "../axios";
+import { addToCart } from "../redux/slice/cart-slice";
 import Ratings from "../shared/components/ratings";
 // DEFAULT ={
 //   id: 1,
@@ -39,7 +41,7 @@ const Price = ({ price, discountPercentage }) => {
 
 const SingleProduct = () => {
   const [state, setState] = useState(null);
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { productId } = useParams();
   useEffect(() => {
@@ -94,7 +96,12 @@ const SingleProduct = () => {
             </div>
             <div className="row mt-3 gx-2">
               <div className="d-grid gap-2 col-6 mx-auto">
-                <button className="btn btn-warning">Add to Cart</button>
+                <button
+                  onClick={() => dispatch(addToCart(state))}
+                  className="btn btn-warning"
+                >
+                  Add to Cart
+                </button>
               </div>
               <div className="d-grid gap-2 col-6 mx-auto">
                 <button

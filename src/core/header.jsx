@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/auth-context";
 
@@ -12,6 +13,7 @@ const AVATAR = {
 
 const Header = () => {
   const { user } = useContext(AuthContext);
+  const { totalProducts } = useSelector((state) => state.cart);
   const navigate = useNavigate();
   return (
     <div className="row bg-primary align-items-center">
@@ -75,13 +77,18 @@ const Header = () => {
         <span role="button" className="material-icons text-light me-5">
           favorite
         </span>
-        <span
+        <div
           role="button"
-          className="material-icons text-light"
           onClick={() => navigate("/cart")}
+          className="position-relative"
         >
-          shopping_cart
-        </span>
+          <span className="material-icons text-light ">shopping_cart</span>
+          {totalProducts !== 0 && (
+            <span className="position-absolute fs-6 px-2 top-0 start-100 translate-middle text-dark bg-warning border border-light rounded-circle">
+              {totalProducts}
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );

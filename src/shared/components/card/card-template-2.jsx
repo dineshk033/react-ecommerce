@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Ratings from "../ratings";
 
-const Price = ({ price, discountPercentage }) => {
+const Price = ({ price, discountPercentage, handleClick }) => {
   const discount = () => price - price * (discountPercentage / 100);
   return (
     <div className="d-flex align-items-center justify-content-center">
@@ -11,20 +11,32 @@ const Price = ({ price, discountPercentage }) => {
   );
 };
 
-const CardTemplateTwo = ({
-  thumbnail,
-  title,
-  brand,
-  rating,
-  stock,
-  price,
-  discountPercentage,
-  id,
-}) => {
+const CardTemplateTwo = (props) => {
+  const {
+    thumbnail,
+    title,
+    brand,
+    rating,
+    stock,
+    price,
+    discountPercentage,
+    handleClick,
+    id,
+  } = props;
   const navigate = useNavigate();
   return (
-    <div className="text-center">
-      <img src={thumbnail} alt={title} width="100%" height="150" />
+    <div className="text-center ">
+      <div className="position-relative">
+        <img src={thumbnail} alt={title} width="100%" height="150" />
+        <span
+          role="button"
+          title="add to cart"
+          onClick={() => handleClick(props)}
+          className="material-icons-outlined position-absolute bottom-0 end-0 p-2 bg-warning"
+        >
+          add_shopping_cart
+        </span>
+      </div>
       <div className="fs-6 mb-2">{brand}</div>
       <div
         role="button"

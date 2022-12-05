@@ -1,3 +1,5 @@
+import { useDispatch, useSelector } from "react-redux";
+import { removeCart } from "../redux/slice/cart-slice";
 import CardTemplate3 from "../shared/components/card/card-template-3";
 
 const LabelPair = ({ label, value, bold }) => {
@@ -13,25 +15,49 @@ LabelPair.defaultProps = {
 };
 
 const CartPage = () => {
+  const dispatch = useDispatch();
+  const record = useSelector((state) => state.cart);
+  console.log(record);
+
+  const handleRemove = (arg) => {
+    console.log(arg);
+    dispatch(removeCart(arg));
+  };
   return (
     <>
-      <div className="fs-5 fw-semibold">3 item in your cart</div>
+      <div className="fs-5 fw-semibold">
+        {record.totalProducts} item in your cart
+      </div>
       <small className="text-primary mb-3" role="button">
         select all items
       </small>
       <div className="row my-3 ">
         <div className="col-md-8">
-          <CardTemplate3 />
-          <CardTemplate3 />
-          <CardTemplate3 />
+          {record.totalProducts > 0 ? (
+            record.products.map((item) => (
+              <CardTemplate3
+                handleRemove={handleRemove}
+                key={item.id}
+                {...item}
+              />
+            ))
+          ) : (
+            <div className="alert alert-info">No item added in cart</div>
+          )}
         </div>
         <div className="col-md-4">
           <div className="bg-info bg-opacity-10  shadow-sm p-3 ">
             <div className="fs-5 fw-semibold mb-3">Order Summary</div>
-            <LabelPair label="Item(s) total" value="$400.92" />
-            <LabelPair label="Shop discount" value="$54.22" />
+            <LabelPair label="Item(s) total" value={`$${record.total}`} />
+            <LabelPair
+              label="Shop discount"
+              value={`$${record.discountedTotal}`}
+            />
             <hr />
-            <LabelPair label="Sub total" value="$455.92" />
+            <LabelPair
+              label="Sub total"
+              value={`$${record.total + record.discountedTotal}`}
+            />
             <LabelPair label="Shipping Fee" value="$24.00" />
             <hr />
             <LabelPair label="Total(2 items)" value="$470.22" bold />

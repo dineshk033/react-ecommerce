@@ -1,4 +1,5 @@
-const CardTemplate3 = ({ thumbnail, title, brand }) => {
+const CardTemplate3 = (props) => {
+  const { thumbnail, title, brand, handleRemove, price } = props;
   return (
     <div className="row mb-4">
       <div className="col-md-3">
@@ -11,15 +12,19 @@ const CardTemplate3 = ({ thumbnail, title, brand }) => {
             <div className="fs-6 fw-semibold text-muted">{brand}</div>
           </div>
           <div className="col-md-3">
-            <div className="fs-4 fw-semibold">USD 59.89</div>
-            <small className="text-mutes">(USD 29.00 each)</small>
+            {
+              <>
+                <div className="fs-4 fw-semibold">USD {price}</div>
+                <small className="text-mutes">(USD 29.00 each)</small>
+              </>
+            }
           </div>
         </div>
         <p>
           Color: <b>Gray & Yellow</b>
         </p>
         <div className="row align-items-baseline">
-          <div className="col-3">
+          <div className="col-4 border-end">
             <select
               className="form-select form-select-sm border-end"
               defaultValue="1"
@@ -31,13 +36,17 @@ const CardTemplate3 = ({ thumbnail, title, brand }) => {
               <option value="3">3</option>
             </select>
           </div>
-          <div role="button" className="col-3 fs-6 border-end text-primary">
+          {/* <div role="button" className="col-3 fs-6 border-end text-primary text">
             Edit
-          </div>
-          <div role="button" className="col-3 fs-6 border-end text-primary">
+          </div> */}
+          <div
+            role="button"
+            onClick={() => handleRemove(props)}
+            className="col-4 fs-6 border-end text-primary text-center"
+          >
             Remove
           </div>
-          <div role="button" className="col-3 fs-6 text-primary">
+          <div role="button" className="col-4 fs-6 text-primary text-center">
             Save for Later
           </div>
         </div>
