@@ -8,10 +8,6 @@ const initialState = {
   products: [],
 };
 
-function FixedTwo(x) {
-  return Number.parseFloat(x).toFixed(2);
-}
-
 const cartSlice = createSlice({
   name: "cart",
   initialState,
