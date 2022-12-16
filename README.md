@@ -13,6 +13,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     redux toolkit ref -https://github.com/john-smilga/redux-toolkit-tutorial/tree/main/final
     toolkit - https://redux-toolkit.js.org/introduction/getting-started
     basic redux - https://react-redux.js.org/api/connect#connect-returns
+    hooks ref - https://blog.logrocket.com/react-reference-guide-hooks-api/
+    hooks sample - https://usehooks.com/
 
 In the project directory, you can run:
 

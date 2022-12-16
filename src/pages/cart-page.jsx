@@ -1,8 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { removeCart } from "../redux/slice/cart-slice";
 import CardTemplate3 from "../shared/components/card/card-template-3";
 
 const LabelPair = ({ label, value, bold }) => {
+  console.log(label, "checko============>");
   return (
     <div className="d-flex mb-2 align-items-center justify-content-between">
       <div className={bold ? "fw-semibold fs-6" : "fs-6"}>{label}</div>
@@ -14,15 +17,17 @@ LabelPair.defaultProps = {
   bold: false,
 };
 
-const CartPage = () => {
-  const dispatch = useDispatch();
+const SHIPPFEE = 25;
+const CartPage = (props) => {
+  // const dispatch = useDispatch();
   const record = useSelector((state) => state.cart);
-  console.log(record);
 
   const handleRemove = (arg) => {
     console.log(arg);
-    dispatch(removeCart(arg));
+    props.remove(arg);
   };
+  console.log(props, "```````````````````````````````````````");
+
   return (
     <>
       <div className="fs-5 fw-semibold">
@@ -58,9 +63,13 @@ const CartPage = () => {
               label="Sub total"
               value={`$${record.total + record.discountedTotal}`}
             />
-            <LabelPair label="Shipping Fee" value="$24.00" />
+            <LabelPair label="Shipping Fee" value={`$${SHIPPFEE}`} />
             <hr />
-            <LabelPair label="Total(2 items)" value="$470.22" bold />
+            <LabelPair
+              label="Total(2 items)"
+              value={`$${record.total + record.discountedTotal + SHIPPFEE}`}
+              bold
+            />
             <div className="d-grid gap-2 mb-2 mt-4">
               <button className="btn btn-warning">Proceed to checkout</button>
             </div>
@@ -70,5 +79,10 @@ const CartPage = () => {
     </>
   );
 };
-
-export default CartPage;
+const mapstatetoProps = (state) => {
+  return state.cart;
+};
+const mapDispatchToprops = (dispatch) => ({
+  remove: (arg) => dispatch(removeCart(arg)),
+});
+export default connect(mapstatetoProps, mapDispatchToprops)(CartPage);

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import AxiosInstance from "../axios";
+import useFetchApi from "../hooks/use-fetchApi";
 import { addToCart } from "../redux/slice/cart-slice";
 import Ratings from "../shared/components/ratings";
 // DEFAULT ={
@@ -39,47 +40,49 @@ const Price = ({ price, discountPercentage }) => {
   );
 };
 
-const SingleProduct = () => {
+const SingleProduct = (props) => {
+  console.log(props, "---------------------------->");
   const [state, setState] = useState(null);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
   const { productId } = useParams();
-  useEffect(() => {
-    AxiosInstance.get(`/products/${productId}`)
-      .then((res) => setState(res.data))
-      .catch((err) => {});
-  }, [productId]);
+  const [isLoading, data, error] = useFetchApi(
+    `/products/${productId}/asd/asd`
+  );
+  useEffect(() => {}, [productId]);
   return (
     <div className="row mt-5" style={{ height: "60vh" }}>
-      {state && (
+      {isLoading && <div>loading....</div>}
+      {error && <div className="alert alert-danger">{error}</div>}
+      {!error && data && (
         <>
           <div className="col-md-7">
             <img
-              src={state.thumbnail}
-              alt={state.title}
+              src={data.thumbnail}
+              alt={data.title}
               width="100%"
               height="400"
             />
           </div>
           <div className="col-md-5">
-            <div className="fs-4 fw-semibold">{state.title}</div>
-            <small>{state.brand}</small>
+            <div className="fs-4 fw-semibold">{data.title}</div>
+            <small>{data.brand}</small>
             <div className="mt-1">
-              <Ratings count={state.rating} /> &nbsp;({state.stock})
+              <Ratings count={data.rating} /> &nbsp;({data.stock})
             </div>
-            state
-            {state.discountPercentage ? (
+            data
+            {data.discountPercentage ? (
               <>
                 <div className="text-success fw-semibold mt-3 mb-1">
                   Special Price
                 </div>
                 <Price
-                  discountPercentage={state.discountPercentage}
-                  price={state.price}
+                  discountPercentage={data.discountPercentage}
+                  price={data.price}
                 />
               </>
             ) : (
-              <div className="fs-4 fw-semibold">${state.price}</div>
+              <div className="fs-4 fw-semibold">${data.price}</div>
             )}
             <div className="d-flex gap-3 align-items-baseline mt-3 ">
               <label className="form-label ">Qty:</label>
@@ -97,7 +100,7 @@ const SingleProduct = () => {
             <div className="row mt-3 gx-2">
               <div className="d-grid gap-2 col-6 mx-auto">
                 <button
-                  onClick={() => dispatch(addToCart(state))}
+                  onClick={() => props.addCart(data)}
                   className="btn btn-warning"
                 >
                   Add to Cart
@@ -115,11 +118,17 @@ const SingleProduct = () => {
             <div className="fs-5 mt-5 text-decoration-underline pb-1">
               Description
             </div>
-            <p>{state.description}</p>
+            <p>{data.description}</p>
           </div>
         </>
       )}
     </div>
   );
 };
-export default SingleProduct;
+const mapstateToprops = (state) => {
+  return state.cart;
+};
+const mapDisPatchtoProps = (dispatch) => ({
+  addCart: (arg) => dispatch(addToCart(arg)),
+});
+export default connect(mapstateToprops, mapDisPatchtoProps)(SingleProduct);

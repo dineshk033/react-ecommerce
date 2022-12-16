@@ -1,12 +1,17 @@
+import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/slice/cart-slice";
 import CardTemplateTwo from "../../../shared/components/card/card-template-2";
 
 const SearchProductList = ({ data }) => {
   const dispatch = useDispatch();
-  const handleCart = (arg) => {
-    dispatch(addToCart(arg));
-  };
+  const handleCart = useCallback(
+    (arg) => {
+      console.log("Asd");
+      dispatch(addToCart(arg));
+    },
+    [dispatch]
+  );
   return (
     <div className="row gy-4 gx-3">
       {data.map((el) => (
